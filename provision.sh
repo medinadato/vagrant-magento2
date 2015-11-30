@@ -1,9 +1,18 @@
+# Update package mirrors and update base system
 apt-get update
 apt-get upgrade -y
-apt-get install -y git redis-server
 
 # Install and configure PHP
+apt-get install -y git redis-server
 apt-get install -y php5-fpm php5-curl php5-mcrypt php5-cli php5-xdebug php5-mysql php5-gd
+
+#other packages
+apt-get -y install git tree curl htop 
+
+# Install composer
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+chmod +x /usr/local/bin/composer
 
 # Enable Xdebug support
 #echo "zend_extension=xdebug.so" > /etc/php5/fpm/conf.d/20-xdebug.ini
