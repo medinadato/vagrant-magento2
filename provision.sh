@@ -30,7 +30,7 @@ cp /vagrant/provision/etc/init/nginx.conf /etc/init/
 #ln -sf /vagrant/provision/etc/ssh/ssh_config /etc/ssh/ssh_config
 #ln -sf /vagrant/provision/etc/hosts /etc/hosts
 
-ln -s /vagrant/www /usr/share/nginx/html/
+ln -s /vagrant/www /usr/share/nginx/www
 
 
 ####mkdir -p /var/log/nginx/magento
