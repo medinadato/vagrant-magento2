@@ -1,4 +1,6 @@
+# Overview
 
+This document provides instructions to get Magento 2 running in a Vagrant Machine.
 
 
 ## Host machine
@@ -34,12 +36,15 @@ Bring vagrant up:
 $ vagrant up
 ```
 
-### Guess machine
+
+## Guess machine
+
+TBC
 
 
+## Magento
 
-
-# Temporary
+## Temporary
 composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition www
 
 Public Key:
