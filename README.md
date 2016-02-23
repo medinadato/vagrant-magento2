@@ -1,31 +1,34 @@
 
 
 
-### Host machine
+## Host machine
 
 You must have Vagrant and Virtual Machine in order to use this box.
 
-#### Vagrant
+### Vagrant
 
 You can download it from here 'https://www.vagrantup.com/downloads.html'.
 
+Also install vbguest with the comand below to avoid shared folder permissions issues:
 
-#### Composer
+vagrant plugin install vagrant-vbguest
+
+### Composer
 
 ```bash
-    curl -sS https://getcomposer.org/installer | php
-    mv composer.phar /usr/local/bin/composer
+$ curl -sS https://getcomposer.org/installer | php
+$ mv composer.phar /usr/local/bin/composer
 ```
 
-#### Hosts file
+### Hosts file
 
 Add the following code to your /etc/hosts file:
 
 ```bash
-    100.0.0.40 local.magento2
+100.0.0.40 local.magento2
 ```
 
-# Commands to run:
+Bring vagrant up:
 
 ```bash
 $ vagrant up
