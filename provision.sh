@@ -4,21 +4,21 @@ apt-get upgrade -y
 
 # Install and configure PHP
 apt-get install -y git redis-server
-apt-get install -y php5-fpm php5-curl php5-mcrypt php5-cli php5-xdebug php5-mysql php5-gd
+apt-get install -y php5-fpm php5-curl php5-mcrypt php5-cli php5-xdebug php5-mysql php5-gd php5-intl php5-xsl
 
-#other packages
+# other packages
 apt-get -y install git tree curl htop 
 
 # Install composer
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-chmod +x /usr/local/bin/composer
+# curl -sS https://getcomposer.org/installer | php
+# mv composer.phar /usr/local/bin/composer
+# chmod +x /usr/local/bin/composer
 
 # Enable Xdebug support
-#echo "zend_extension=xdebug.so" > /etc/php5/fpm/conf.d/20-xdebug.ini
-#echo "xdebug.remote_connect_back = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
-#echo "xdebug.remote_enable = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
-#echo "xdebug.remote_port = 9000" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+echo "zend_extension=xdebug.so" > /etc/php5/fpm/conf.d/20-xdebug.ini
+echo "xdebug.remote_connect_back = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+echo "xdebug.remote_enable = 1" >> /etc/php5/fpm/conf.d/20-xdebug.ini
+echo "xdebug.remote_port = 9000" >> /etc/php5/fpm/conf.d/20-xdebug.ini
 
 # Fix permissions issues
 #3sed -i 's/user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf
@@ -49,14 +49,11 @@ service nginx restart
 # Install and configure MySQL
 export DEBIAN_FRONTEND=noninteractive
 
-apt-get install -y mysql-client mysql-server
+apt-get install -y mysql-server-5.6 mysql-client-5.6
 
-####mysql -uroot -e "DROP DATABASE IF EXISTS magento_dev_celebrityslim"
-####mysql -uroot -e "CREATE DATABASE magento_dev_celebrityslim"
-####mysql -uroot -e "CREATE DATABASE wordpress_dev_celebrityslim"
-####mysql -uroot magento_dev_celebrityslim < /vagrant/provision/mysql/magento.sql
-####mysql -uroot wordpress_dev_celebrityslim < /vagrant/provision/mysql/wordpress.sql
+mysql -uroot -e "DROP DATABASE IF EXISTS magento2"
+mysql -uroot -e "CREATE DATABASE magento2"
+#mysql -uroot magento2 < /vagrant/provision/mysql/magento.sql
 
-####mysql -uroot -e "GRANT ALL PRIVILEGES ON magento_dev_celebrityslim.* TO 'celebrity-slim'@localhost IDENTIFIED BY 'arkade123'"
-####mysql -uroot -e "GRANT ALL PRIVILEGES ON wordpress_dev_celebrityslim.* TO 'celebrity-slim'@localhost IDENTIFIED BY 'arkade123'"
-####mysql -uroot -e "FLUSH PRIVILEGES"
+mysql -uroot -e "GRANT ALL PRIVILEGES ON magento2.* TO 'mage_user'@'%' IDENTIFIED BY 'wolf123'"
+mysql -uroot -e "FLUSH PRIVILEGES"

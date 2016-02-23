@@ -52,7 +52,7 @@ Host *
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials no
 
-#Host util.celebrityslim
+#Host stg.domain
 #  HostName %h.com.au
 #  User deploy
 #  Port 2230
