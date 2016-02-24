@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
     config.ssh.forward_agent = true
 
     app.vm.provider "virtualbox" do |vb|
-      vb.name = "box-resumise.com.au"
+      vb.name = "magento2-box"
       vb.memory = "2048"
     end
 
