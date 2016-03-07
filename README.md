@@ -24,7 +24,7 @@ $ mv composer.phar /usr/local/bin/composer
 
 ### Hosts file
 
-Add the following code to your /etc/hosts file:
+Add the following code to your /etc/hosts file in the host machine:
 
 ```bash
 100.0.0.40 local.magento2
@@ -45,8 +45,10 @@ TBC
 ## Magento
 
 ## Temporary
-composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition www
 
+```bash
+composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition www
+```
 Public Key:
     16e1fa43197072c643dc8deb387cb710
 Private Key:

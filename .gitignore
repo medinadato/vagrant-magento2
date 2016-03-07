@@ -1,0 +1,5 @@
+www/
+!www/composer.json
+!www/composer.lock
+.idea/
+.vagrant/
