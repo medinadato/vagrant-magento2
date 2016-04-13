@@ -23,7 +23,3 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-
-*/1 * * * * /usr/bin/php -c /etc/php5/fpm/php.ini /vagrant/www/bin/magento cron:run > /vagrant/www/var/log/magento.cron.log&
-*/1 * * * * /usr/bin/php -c /etc/php5/fpm/php.ini /vagrant/www/update/cron.php > /vagrant/www/var/log/magento.cron.log&
-*/1 * * * * /usr/bin/php -c /etc/php5/fpm/php.ini /vagrant/www/bin/magento setup:cron:run > /vagrant/www/var/log/magento.cron.log&

@@ -7,13 +7,13 @@ apt-get upgrade -y
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Install and configure PHP
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-apt-get install -y git redis-server
-apt-get install -y php5-fpm php5-curl php5-mcrypt php5-cli php5-xdebug php5-mysql php5-gd php5-intl php5-xsl
+sudo apt-get install -y git redis-server
+sudo apt-get install -y php5-fpm php5-curl php5-cli php5-xdebug php5-mysql php5-gd php5-intl php5-xsl php5-mcrypt
 
 # Restore missing mcrypt plugin
-php5enmod mcrypt
+sudo php5enmod mcrypt
 
-ln -sf /vagrant/provision/etc/php5/fpm/php.ini /etc/php5/fpm/php.ini
+#ln -sf /vagrant/provision/etc/php5/fpm/php.ini /etc/php5/fpm/php.ini
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Enables Xdebug support
@@ -35,8 +35,8 @@ mv composer.phar /usr/local/bin/composer
 chmod +x /usr/local/bin/composer
 
 # Fix permissions issues
-#3sed -i 's/user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf
-#sed -i 's/group = www-data/group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+sed -i 's/user = www-data/user = vagrant/g' /etc/php5/fpm/pool.d/www.conf
+sed -i 's/group = www-data/group = vagrant/g' /etc/php5/fpm/pool.d/www.conf
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Install and configure Nginx
@@ -52,7 +52,9 @@ ln -sf /vagrant/provision/etc/hosts /etc/hosts
 
 ln -s /vagrant/www /usr/share/nginx/www
 
-service nginx restart
+sed -i 's/sendfile on/sendfile off/g' /etc/nginx/nginx.conf
+
+/etc/init.d/nginx restart
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Install and configure MySQL
@@ -61,15 +63,18 @@ export DEBIAN_FRONTEND=noninteractive
 
 apt-get install -y mysql-server-5.6 mysql-client-5.6
 
-mysql -uroot -e "DROP DATABASE IF EXISTS magento2"
-mysql -uroot -e "CREATE DATABASE magento2"
-#mysql -uroot magento2 < /vagrant/provision/mysql/magento.sql
-
-mysql -uroot -e "GRANT ALL PRIVILEGES ON magento2.* TO 'mage_user'@'%' IDENTIFIED BY 'wolf123'"
-mysql -uroot -e "FLUSH PRIVILEGES"
+mysql -uroot -e "DROP DATABASE IF EXISTS db_purebaby"
+mysql -uroot -e "CREATE DATABASE db_purebaby"
+mysql -uroot db_purebaby < /vagrant/provision/mysql/magento.sql
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Crontab
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ln -sf /vagrant/provision/etc/crontab/vagrant /var/spool/cron/crontabs/vagrant
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Magento
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#ln -s /vagrant/www/app/etc/local.xml_dev /vagrant/www/app/etc/local.xml
