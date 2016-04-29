@@ -29,7 +29,7 @@ service php7.0-fpm restart
 # Enables Xdebug support
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # php dev tools
-apt-get install php7.0-dev
+apt-get install -y php7.0-dev
 # xdebug
 wget "http://xdebug.org/files/xdebug-2.4.0.tgz" && tar -xvzf xdebug-2.4.0.tgz && cd xdebug-2.4.0 && ./configure && make
 cp modules/xdebug.so /usr/lib/php/20151012
