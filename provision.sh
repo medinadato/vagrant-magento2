@@ -34,13 +34,13 @@ apt-get install php7.0-dev
 wget "http://xdebug.org/files/xdebug-2.4.0.tgz" && tar -xvzf xdebug-2.4.0.tgz && cd xdebug-2.4.0 && ./configure && make
 cp modules/xdebug.so /usr/lib/php/20151012
 
-echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> /etc/php/7.0/cli/php.ini
-echo "xdebug.remote_enable = 1" >> /etc/php/7.0/fpm/php.ini
-echo "xdebug.remote_connect_back=1" >> /etc/php/7.0/fpm/php.ini
-echo "xdebug.remote_port = 9000" >> /etc/php/7.0/fpm/php.ini
-echo "xdebug.scream=0" >> /etc/php/7.0/fpm/php.ini
-echo "xdebug.show_local_vars=1" >> /etc/php/7.0/fpm/php.ini
-echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.0/fpm/php.ini
+#echo "zend_extension = /usr/lib/php/20151012/xdebug.so" >> /etc/php/7.0/cli/php.ini
+#echo "xdebug.remote_enable = 1" >> /etc/php/7.0/fpm/php.ini
+#echo "xdebug.remote_connect_back=1" >> /etc/php/7.0/fpm/php.ini
+#echo "xdebug.remote_port = 9000" >> /etc/php/7.0/fpm/php.ini
+#echo "xdebug.scream=0" >> /etc/php/7.0/fpm/php.ini
+#echo "xdebug.show_local_vars=1" >> /etc/php/7.0/fpm/php.ini
+#echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.0/fpm/php.ini
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Caching
