@@ -1,6 +1,6 @@
 # Overview
 
-It's a Magento 2 project. This document provides instructions to get it running on Vagrant.
+It's a Magento 2 project. This document provides instructions to get it up and running on Vagrant.
 
 
 # Tools
@@ -25,6 +25,15 @@ Also, it's recommended installing vbguest with the command below to avoid shared
 $ vagrant plugin install vagrant-vbguest
 ```
 
+## MySQL Remote access
+
+The box is already prepared to allow remote mysql access. To do so just use the command below from your host machine.
+> As per Vagrantfile, the currenty ip for this box is 100.0.0.40
+
+```bash
+$ mysql -hIP_TO_VAGRANT_BOX -uroot magento
+```
+
 
 # Host machine
 
@@ -44,7 +53,7 @@ If adding your public key to BitBucket is not an option you can run the alternat
 
 ```bash
 $ rm -rf www
-$ git clone https://YOUR_BITBUCKET_USERNAME@bitbucket.org/wolfinteractive/purebaby.com.au.git www
+$ git clone https://github.com/magento/magento2.git www
 ```
 
 ## Bring vagrant up:
@@ -58,14 +67,15 @@ $ vagrant up
 Add the following code into the host /etc/hosts file:
 
 ```bash
-100.0.0.50 local.purebaby.com.au
+100.0.0.40 local.magento2
 ```
 
 
 # Magento
 
-## Admin
+Inside the guest machine run:
 
-URL | User | Pass
---------------------------------------------- | ----- | --------
-http://local.purebaby.com.au/index.php/admin/ | admin | adm1234
+```bash
+$ php /vagrant/www/bin/magento setup:install --admin-firstname="Admin" --admin-lastname="M2" --admin-email="medina@mdnsolutions.com" --admin-user="admin" --admin-password="adm1234" --base-url="http://local.magento2" --db-name="magento" --db-user="root" --currency="AUD" --language="en_AU" --timezone="Australia/Melbourne" --backend-frontname="admin"
+```
+
