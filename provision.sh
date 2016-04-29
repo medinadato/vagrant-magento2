@@ -97,7 +97,6 @@ apt-get install -y mysql-server-5.6 mysql-client-5.6
 mysql -uroot -e "GRANT ALL ON *.* to root@'%'";
 mysql -uroot -e "DROP DATABASE IF EXISTS magento"
 mysql -uroot -e "CREATE DATABASE magento"
-mysql -uroot magento < /vagrant/provision/mysql/magento.sql
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/my.cnf
 

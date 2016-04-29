@@ -42,12 +42,18 @@ You must have installed Vagrant and Virtual Box.
 
 ## Load the submodule
 
+### Folder www present
+
+If, inside your magento2 vagrant box there is a www folder, please install the submodule.
+
 > Note: In order to load your module, you might need to add your public key to Bitbucket.
 > Check with the BitBucket administrator you have the right permissions to run git on ssh.
 
 ```bash
 $ git pull && git submodule init && git submodule update && git submodule status
 ```
+
+### Folder www not present
 
 If adding your public key to BitBucket is not an option you can run the alternative command:
 
@@ -76,6 +82,11 @@ Add the following code into the host /etc/hosts file:
 Inside the guest machine run:
 
 ```bash
-$ php /vagrant/www/bin/magento setup:install --admin-firstname="Admin" --admin-lastname="M2" --admin-email="medina@mdnsolutions.com" --admin-user="admin" --admin-password="adm1234" --base-url="http://local.magento2" --db-name="magento" --db-user="root" --currency="AUD" --language="en_AU" --timezone="Australia/Melbourne" --backend-frontname="admin"
+$ php /vagrant/www/bin/magento setup:install --admin-firstname="Admin" --admin-lastname="M2" --admin-email="medina@mdnsolutions.com" --admin-user="admin" --admin-password="adm6543" --base-url="http://local.magento2" --db-name="magento" --db-user="root" --currency="AUD" --language="en_AU" --timezone="Australia/Melbourne" --backend-frontname="admin"
 ```
 
+Afterwards you should be able to access back-end via:
+
+URL: local.magento2/admin
+User: admin
+Pass: adm6543
