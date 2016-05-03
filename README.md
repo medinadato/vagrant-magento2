@@ -82,6 +82,7 @@ Add the following code into the host /etc/hosts file:
 Inside the guest machine run:
 
 ```bash
+$ cd /vagrant/www/ && composer install
 $ php /vagrant/www/bin/magento setup:install --admin-firstname="Admin" --admin-lastname="M2" --admin-email="medina@mdnsolutions.com" --admin-user="admin" --admin-password="adm6543" --base-url="http://local.magento2" --db-name="magento" --db-user="root" --currency="AUD" --language="en_AU" --timezone="Australia/Melbourne" --backend-frontname="admin"
 ```
 
