@@ -30,14 +30,8 @@ sed -i 's/display_errors = Off/display_errors = On/g' /etc/php/7.0/fpm/php.ini
 # php dev tools
 apt-get install -y php7.0-dev
 
-cd /tmp
-wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz
-tar -xzf xdebug-2.4.0rc2.tgz
-cd xdebug-2.4.0RC2/
-phpize
-./configure --enable-xdebug
-make
-cp modules/xdebug.so /usr/lib/.
+cd /tmp && wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz && tar -xzf xdebug-2.4.0rc2.tgz
+cd xdebug-2.4.0RC2/ && phpize && ./configure --enable-xdebug && make && cp modules/xdebug.so /usr/lib/.
 #FOR FPM
 echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/fpm/conf.d/20-xdebug.ini
 echo 'xdebug.remote_enable=1' >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
@@ -48,16 +42,15 @@ echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
 service php7.0-fpm restart
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Caching
+# Caching/Proxy
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 apt-get install -y redis-server
 apt-get install -y varnish
 
-sed -i 's/# VARNISH_LISTEN_PORT=6081/VARNISH_LISTEN_PORT=80/g' /etc/default/varnish
 sed -i 's/DAEMON_OPTS="-a :6081/DAEMON_OPTS="-a :80/g' /etc/default/varnish
+sed -i 's/-f /etc/varnish/default.vcl/-f /etc/varnish/magento.vcl/g' /etc/default/varnish
 
-mv /etc/varnish/default.vcl /etc/varnish/default.vcl_bkp
-ln -sf /vagrant/provision/etc/varnish/varnish.vcl /etc/varnish/default.vcl
+ln -sf /vagrant/provision/etc/varnish/magento.vcl /etc/varnish/magento.vcl
 
 service varnish restart
 
