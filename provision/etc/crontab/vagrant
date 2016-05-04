@@ -23,3 +23,7 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
+
+* * * * * /usr/bin/php -c /etc/php/7.0/fpm/php.ini /vagrant/www/bin/magento cron:run | grep -v "Ran jobs by schedule" >> /vagrant/www/var/log/magento.cron.log
+* * * * * /usr/bin/php -c /etc/php/7.0/fpm/php.ini /vagrant/www/update/cron.php >> /vagrant/www/var/log/update.cron.log
+* * * * * /usr/bin/php -c /etc/php/7.0/fpm/php.ini /vagrant/www/bin/magento setup:cron:run >> /vagrant/www/var/log/setup.cron.log
