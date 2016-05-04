@@ -88,6 +88,6 @@ $ php /vagrant/www/bin/magento setup:install --admin-firstname="Admin" --admin-l
 
 Afterwards you should be able to access back-end via:
 
-URL: local.magento2/admin
-User: admin
-Pass: adm6543
+URL | User | Pass
+--------------------------- | ----- | --------
+http://local.magento2/admin | admin | adm6543
