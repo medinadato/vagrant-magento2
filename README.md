@@ -28,7 +28,7 @@ $ vagrant plugin install vagrant-vbguest
 ## MySQL Remote access
 
 The box is already prepared to allow remote mysql access. To do so just use the command below from your host machine.
-> As per Vagrantfile, the currenty ip for this box is 100.0.0.40
+> As per Vagrantfile, the default IP for this box is 100.0.0.40
 
 ```bash
 $ mysql -hIP_TO_VAGRANT_BOX -uroot magento
@@ -37,17 +37,14 @@ $ mysql -hIP_TO_VAGRANT_BOX -uroot magento
 
 # Host machine
 
-You must have installed Vagrant and Virtual Box.
+You must have Vagrant and Virtual Box installed.
 
 
 ## Load the submodule
 
 ### Folder www present
 
-If, inside your magento2 vagrant box there is a www folder, please install the submodule.
-
-> Note: In order to load your module, you might need to add your public key to Bitbucket.
-> Check with the BitBucket administrator you have the right permissions to run git on ssh.
+If inside your Magento2 Vagrant Box there is a www folder, please run the command below to download the submodule.
 
 ```bash
 $ git pull && git submodule init && git submodule update && git submodule status
@@ -55,7 +52,7 @@ $ git pull && git submodule init && git submodule update && git submodule status
 
 ### Folder www not present
 
-If adding your public key to BitBucket is not an option you can run the alternative command:
+In this case just clone the magento repository yourself.
 
 ```bash
 $ rm -rf www

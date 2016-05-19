@@ -48,9 +48,12 @@ apt-get install -y redis-server
 apt-get install -y varnish
 
 sed -i 's/DAEMON_OPTS="-a :6081/DAEMON_OPTS="-a :80/g' /etc/default/varnish
-sed -i 's/-f /etc/varnish/default.vcl/-f /etc/varnish/magento.vcl/g' /etc/default/varnish
+sed -i 's/default.vcl/magento.vcl/g' /etc/default/varnish
 
 ln -sf /vagrant/provision/etc/varnish/magento.vcl /etc/varnish/magento.vcl
+
+# For Ubuntu v15.04+
+# ln -sf /vagrant/provision/etc/systemd/system/varnish.service.d/customexec.conf /etc/systemd/system/varnish.service.d/customexec.conf
 
 service varnish restart
 
@@ -84,7 +87,7 @@ ln -s /vagrant/www /usr/share/nginx/www
 
 sed -i 's/sendfile on/sendfile off/g' /etc/nginx/nginx.conf
 
-/etc/init.d/nginx restart
+service nginx restart
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Install and configure MySQL
