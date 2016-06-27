@@ -32,12 +32,13 @@ apt-get install -y php7.0-dev
 
 cd /tmp && wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz && tar -xzf xdebug-2.4.0rc2.tgz
 cd xdebug-2.4.0RC2/ && phpize && ./configure --enable-xdebug && make && cp modules/xdebug.so /usr/lib/.
-#FOR FPM
-echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-echo 'xdebug.remote_enable=1' >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-#FOR CLI
-echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/cli/conf.d/20-xdebug.ini
-echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
+#mod-available
+echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/mods-available/20-xdebug.ini
+echo 'xdebug.remote_enable=1' >> /etc/php/7.0/mods-available/20-xdebug.ini
+#enable for FPM
+ln -s /etc/php/7.0/mods-available/20-xdebug.ini /etc/php/7.0/fpm/conf.d/20-xdebug.ini
+#enable for CLI
+#ln -s /etc/php/7.0/mods-available/20-xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.ini
 
 service php7.0-fpm restart
 
